@@ -7,20 +7,20 @@ def roman_to_int(roman_string):
     if not isinstance(roman_string, str):
         return 0
     s = list(roman_string)
-    for l in range(len(s)):
+    for b in range(len(s)):
         arr = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
         num = [1, 5, 10, 50, 100, 500, 1000]
         for i in range(len(arr)):
-            if (s[l] == arr[i]):
-                s[l] = num[i]
+            if (s[b] == arr[i]):
+                s[b] = num[i]
                 break
     if len(s) == 1:
         return (s[0])
     else:
-        for l in range(1, len(s)):
-            if s[l - 1] >= s[l]:
-                result = result + s[l - 1]
+        for d in range(1, len(s)):
+            if s[d - 1] >= s[d]:
+                result = result + s[d - 1]
             else:
-                result = result - s[l - 1]
-        result = result + s[l]
+                result = result - s[d - 1]
+        result = result + s[d]
         return result
