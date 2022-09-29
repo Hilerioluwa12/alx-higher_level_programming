@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def roamn_to_int(roman_string):
+def roman_to_int(roman_string):
     c = 0
     result = 0
     if not roman_string:
