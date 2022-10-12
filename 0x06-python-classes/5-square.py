@@ -1,35 +1,40 @@
 #!/usr/bin/python3
+"""Square module."""
+
+
 class Square:
+    """Defines a square."""
+
     def __init__(self, size=0):
-        if isinstance(size, int) and size >= 0:
-            self.__size = size
-        elif (not isinstance(size, int)):
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
+         """Constructor.
+        Args:
+            size: Length of a side of the square.
+        """
+        self.__size = size
 
     @property
     def size(self):
+        """Property for the length of a side of this square.
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-        if isinstance(value, int) and value >= 0:
-            self.__size = value
-        elif (not isinstance(value, int)):
+        if type(value) is not int:
             raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
+        if value < 0:
+                raise ValueError("size must be >= 0")
+        self.__size = value
 
     def area(self):
-        return (self.__size * self.__size)
+        return self.__size ** 2
 
     def my_print(self):
-        if (self.__size == 0):
-            print()
-        else:
-            a, b = self.__size, self.__size
-            for i in range(a):
-                for j in range(b):
-                    print("#", end="")
-                print("")
+        """Prints this square."""
+        for x in range(self.size):
+            for y in range(self.size):
+                print("#", end='\n' if y is self.size - 1 and x != y else "")
+        print()i
