@@ -10,4 +10,7 @@ This repository contains programs written for the high-level programming at ALX 
 - [0x03-python-data_structures](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x03-python-data_structures)
 - [0x04-python-more_data_structures](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x04-python-more_data_structures)
 - [0x05-python-exceptions](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x05-python-exceptions)
-- [0x06-python-classes]()
+- [0x06-python-classes](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x06-python-classes)
+- [0x07-python-test_driven_development](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x07-python-test_driven_development)
+- [0x08-python-more_classes](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x08-python-more_classes)
+- [0x09-python-everything_is_object](https://github.com/Hilerioluwa12/alx-higher_level_programming/tree/master/0x0-9-python-everything_is_object)
