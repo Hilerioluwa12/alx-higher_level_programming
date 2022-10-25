@@ -10,15 +10,6 @@ class MyList(list):
         None
     """
 
-    def __init__(self):
-        """
-        initializes list
-
-        Arguments: None
-        Returns: None
-        """
-        super().__init__
-
     def print_sorted(self):
         """
         prints sorted list
