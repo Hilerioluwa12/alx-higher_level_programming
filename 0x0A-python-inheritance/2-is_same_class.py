@@ -2,7 +2,7 @@
 """Function that returns true"""
 
 
-def is _same_class(obj, a_class):
+def is_same_class(obj, a_class):
     """
     confirm if object is exactly an instance of the class
 
