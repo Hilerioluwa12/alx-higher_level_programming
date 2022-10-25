@@ -2,7 +2,7 @@
 """Class Mylist"""
 
 
-class Mylist(list):
+class MyList(list):
     """
     Mylist class
 
@@ -17,7 +17,6 @@ class Mylist(list):
         Arguments: None
         Returns: None
         """
-        super().__init__
 
     def print_sorted(self):
         """
