@@ -17,13 +17,15 @@ class Mylist(list):
         Arguments: None
         Returns: None
         """
+        super().__init__
 
     def print_sorted(self):
         """
         prints sorted list
         
         Arguments: None
-        Returns:None
+        
+        Returns: None
         """
 
         print(sorted(self))
