@@ -22,9 +22,11 @@ class MyList(list):
     def print_sorted(self):
         """
         prints sorted list
-        Arguments: None
+        Arguments: var
 
         Returns: None
         """
-
-        print(sorted(self))
+        var = []
+        var = self.copy()
+        var.sort()
+        print(var)
