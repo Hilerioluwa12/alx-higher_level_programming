@@ -17,7 +17,4 @@ class MyList(list):
 
         Returns: None
         """
-        var = []
-        var = self.copy()
-        var.sort()
-        print(var)
+        print(sorted(self))
