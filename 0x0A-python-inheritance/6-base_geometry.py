@@ -5,15 +5,11 @@ baseGeometry class
 
 
 class BaseGeometry:
-    def __init__(self):
-        """
-        empty class
-        """
-        pass
-
+    """"
+    BaseGeometry class
+    """
     def area(self):
         """
         expection raise with below error
         """
-
         raise Exception("area() is not implemented")
