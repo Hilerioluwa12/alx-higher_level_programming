@@ -98,36 +98,6 @@ class Base:
             return (result)
 
     @classmethod
-    def load_from_file_csv(cls):
-        """
-        load_from_file_csv: loads from csv file and create objects
-        """
-        filename = cls.__name__ + ".csv"
-        inst = []
-        d = {}
-        if os.path.exists(filename) is True:
-            with open(filename) as fd:
-                result = csv.reader(fd, delimiter=',')
-                for row in result:
-                    a = []
-                    for elem in row:
-                        a.append(int(elem))
-
-                    if cls.__name__ == "Rectangle":
-                        new = ['id', 'width', 'height', 'x', 'y']
-                        for i in range(len(a)):
-                            d[new[i]] = a[i]
-                        inst.append(cls.create(**d))
-                    if cls.__name__ == "Square":
-                        new = ['id', 'size', 'x', 'y']
-                        for i in range(len(a)):
-                            d[new[i]] = a[i]
-                        inst.append(cls.create(**d))
-            return(inst)
-        else:
-            return(result)
-
-    @clssmethod
     def save_to_file_csv(cls, list_objs):
         """
         save_to_file_csv: save a dir in a csv file
@@ -156,3 +126,33 @@ class Base:
                         for i in new:
                             var.append(getattr(elem, i))
                         result.writerow(var)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        load_from_file_csv: loads from csv file and create objects
+        """
+        filename = cls.__name__ + ".csv"
+        inst = []
+        d = {}
+        if os.path.exists(filename) is True:
+            with open(filename) as fd:
+                result = csv.reader(fd, delimiter=',')
+                for row in result:
+                    a = []
+                    for elem in row:
+                        a.append(int(elem))
+
+                    if cls.__name__ == "Rectangle":
+                        new = ['id', 'width', 'height', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
+                    if cls.__name__ == "Square":
+                        new = ['id', 'size', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
+            return(inst)
+        else:
+            return(result)
