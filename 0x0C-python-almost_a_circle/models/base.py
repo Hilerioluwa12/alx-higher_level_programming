@@ -126,3 +126,33 @@ class Base:
             return(inst)
         else:
             return(result)
+
+    @clssmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        save_to_file_csv: save a dir in a csv file
+        """
+        filename = cls.__name__ + ".csv"
+        result = ""
+        new = []
+        big = []
+        with open(filename, 'w') as fd:
+            if list_objs is None:
+                result = csv.writer(fd, delimiter=',')
+                result.writerow([])
+            else:
+                result = csv.writer(fd, delimiter=',')
+                if cls.__name__ == "Rectangle":
+                    for elem in list_objs:
+                        new = ['id', 'width', 'height', 'x', 'y']
+                        var = []
+                        for i in new:
+                            var.append(getattr(elem, i))
+                        result.writerow(var)
+                if cls.__name__ == "Square":
+                    for elem in list_objs:
+                        new = ['id', 'size', 'x', 'y']
+                        var = []
+                        for i in new:
+                            var.append(getattr(elem, i))
+                        result.writerow(var)
