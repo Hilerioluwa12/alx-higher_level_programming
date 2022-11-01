@@ -1,63 +1,97 @@
 #!/usr/bin/python3
+"""
+Unittest for base class
+"""
 
-"""Module for Base unit tests."""
+import json
 import unittest
-import pep8
-
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
 
 
-class TestBase(unittest.TestCase):
-    """test the Base class."""
+class Testbaseclass(unittest.TestCase):
+    """ test for base"""
+    def testcreateelems(self):
+        b = Base()
+        b1 = Base(76)
+        b2 = Base()
+        self.assertEqual(b.id, 1)
+        self.assertEqual(b1.id, 76)
+        self.assertEqual(b2.id, 2)
 
-    def test_init(self):
-         """tests."""
-         b1 = Base()
-         self.assertEqual(b1.id, 1)
+    def testsetid(self):
+        """ test for set id"""
+        b = Base("h")
+        b1 = Base({1: 2})
+        b2 = Base((1, 4))
+        b3 = Base([3, 6])
+        b4 = Base(None)
+        b5 = Base(0)
+        self.assertEqual(b.id, "h")
+        self.assertEqual(b1.id, {1: 2})
 
-         b2 = Base()
-         self.assertEqual(b2.id, 2)
+       self.assertEqual(b2.id, (1, 4))
+        self.assertEqual(b3.id, [3, 6])
+        self.assertEqual(b4.id, 4)
+        self.assertEqual(b5.id, 0)
 
-         b3 = Base()
-         self.assertEqual(b3.id, 3)
+#     --------- private attribute of class --------
 
-         b4 = Base(12)
-         self.assertEqual(b4.id, 12)
+    def testprivate(self):
+        """ test for private attribute"""
+        b = Base()
+        with self.assertRaises(AttributeError):
+            b.__nb_objects
 
-         b5 = Base()
-         self.assertEqual(b5.id, 4)
+#    -------------- static method to_json_string -----------
 
-    def test_json(self):
-        """base json tests."""
-        r1 = Rectangle(10, 7, 2, 8)
-        dictionary = r1.to_dictionary()
-        json_dictionary = Base.to_json_string([dictionary])
-        d = {'x': 2, 'width': 10, 'id': 1, 'height': 7, 'y': 8}
-        self.assertAlmostEqual(print(dictionary), print(d))
-        self.assertAlmostEqual(print(type(dictionary)),print("<class 'dict'>"))
-        d = [{"x": 2, "width": 10, "id": 1, "height": 7, "y": 8}]
-        self.assertAlmostEqual(print(json_dictionary), print(d))
-        self.assertAlmostEqual(print(type(json_dictionary)),print("<class 'str'>"))
+    def testtojson(self):
+        """ test to json"""
+        dic = {'id': 8, 'size': 5, 'x': 6, 'y': 7}
+        stdic = json.dumps([dic])
+        self.assertEqual(Base.to_json_string([dic]), stdic)
+        r = Base.to_json_string(None)
+        self.assertEqual(r, "[]")
+        r = Base.to_json_string([])
+        self.assertEqual(r, "[]")
+        dic = [1, 2, 3]
+        r = Base.to_json_string([dic])
+        self.assertEqual(r, "[[1, 2, 3]]")
 
-    def test_json_to_file(self):
-        """update tests."""
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
-        Rectangle.save_to_file([r1, r2])
-        d = [{"y": 8, "x": 2, "id": 1, "width": 10, "height": 7}, {"y": 0, "x": 0, "id": 2, "width": 2, "height": 4}]
-        with open("Rectangle.json", "r") as file:
-            self.assertEqual(print(file.read()), print(d))
+    def testtojson1(self):
+        """error json"""
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
 
-    def test_from_json_string(self):
-        """tests"""
-        list_input = [
-        {'id': 89, 'width': 10, 'height': 4}, 
-        {'id': 7, 'width': 1, 'height': 7}]
-        json_list_input = Rectangle.to_json_string(list_input)
-        list_output = Rectangle.from_json_string(json_list_input)
-        l = "[<class 'list'>] [{'height': 4, 'width': 10, 'id': 89}, {'height': 7, 'width': 1, 'id': 7}]"
-        self.assertEqual(print(l), print("[{}] {}".format(type(list_output), list_output)))
-        json_list_input = Rectangle.to_json_string(None)
-        list_output = Rectangle.from_json_string(json_list_input)
-        self.assertEqual(print("[]"), print("[{}] {}".format(type(list_output), list_output)))
+#   --------------  save to file -------------------------
+
+    def testsavetofile(self):
+        """ test save to file"""
+        Base.save_to_file([])
+        with open("Base.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+        Base.save_to_file(None)
+        with open("Base.json") as fd:
+            self.assertEqual(fd.read(), "[]")
+
+    def testsavetofile1(self):
+        """ error save to file"""
+        with self.assertRaises(AttributeError):
+            Base.save_to_string()
+
+#    ----------------- from json --------------------------
+
+    def testfromjson(self):
+        """ test load from json"""
+        self.assertEqual(Base.from_json_string("[]"), [])
+        self.assertEqual(Base.from_json_string(None), [])
+        self.assertEqual(Base.from_json_string(""), [])
+        lista = [1, 2, 3]
+        r = Base.to_json_string(lista)
+        self.assertEqual(Base.from_json_string(r), lista)
+
+    def testfromjson1(self):
+        """ error save to file"""
+        with self.assertRaises(TypeError):
+            Base.from_json_string()
