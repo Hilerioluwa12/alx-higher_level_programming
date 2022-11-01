@@ -79,6 +79,25 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
+        load_from_file: reads fro file.json and returns the objects
+        """
+        filename = cls.__name__ + ".json"
+        variable = ""
+        result = []
+        inst = []
+        if os.path.exists(filename) is True:
+            with open(filename, 'r') as fd:
+                variable = fd.read()
+                result = cls.from_json_string(variable)
+                for elem in result:
+                    inst.append(cls.create(**elem))
+            return(inst)
+        else:
+            return (result)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
         load_from_file_csv: loads froom csv file and create objects
         """
         filename = cls.__name__ + ".csv"
