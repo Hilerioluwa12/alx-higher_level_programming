@@ -71,14 +71,25 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """returns a list of instances."""
-        try:
-            filename = cls.__name__ + ".json"
-            with open(filename, 'r') as f:
-                json_list = cls.from_json_string(f.read())
-                obj_list = []
-                for j in obj_list:
-                    obj_list.append(cls.create(**j))
-                return obj_list
-        except:
-            return []
+        """
+        load_from_file_csv: loads from csv file and create objects
+        """
+        filename = cls.__name__ + ".csv"
+        inst = []
+        d = {}
+        if os.path.exists(filename) is True:
+            with open(filename) as fd:
+                result = csv.reader(fd, delimiter=',')
+                for row in result:
+                    a = []
+                    for elem in row:
+                        a.append(int(elem))
+
+                    if cls.__name__  ++ "Rectangle":
+                        new  = ['id', 'width', 'height', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
+            return(inst)
+        else:
+            return(result)
