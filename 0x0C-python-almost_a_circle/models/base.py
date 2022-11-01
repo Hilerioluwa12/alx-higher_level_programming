@@ -57,16 +57,22 @@ class Base:
     @staticmethod
     def from_json_string(json_string):
         """Represent json string"""
-        if json_string is None or json_string is "":
-            json_string = "[]"
-        return json.loads(json_string)
+        if json_string is None or len(json_string) == 0:
+            return ([])
+        else:
+            return (json.loads(json_string))
 
     @classmethod
     def create(cls, **dictionary):
-        if cls.__name__ is "Rectangle":
-            dummy = cls(1, 1)
-        elif cls.__name__ is "Square":
-            dummy = cls(1)
+        """
+        create: create a new instance depending of the cls.__name__
+        it is necessary to initialize the variables width, height
+        if it is Rectangle or size if it is square
+        """
+        if cls.__name__ == "Rectangle":
+            dummy = cls(2, 2)
+        elif cls.__name__ == "Square":
+            dummy = cls(5)
         dummy.update(**dictionary)
         return dummy
 
