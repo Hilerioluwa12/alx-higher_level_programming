@@ -72,7 +72,7 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        load_from_file_csv: loads from csv file and create objects
+        load_from_file_csv: loads froom csv file and create objects
         """
         filename = cls.__name__ + ".csv"
         inst = []
@@ -85,8 +85,13 @@ class Base:
                     for elem in row:
                         a.append(int(elem))
 
-                    if cls.__name__  ++ "Rectangle":
-                        new  = ['id', 'width', 'height', 'x', 'y']
+                    if cls.__name__ == "Rectangle":
+                        new = ['id', 'width', 'height', 'x', 'y']
+                        for i in range(len(a)):
+                            d[new[i]] = a[i]
+                        inst.append(cls.create(**d))
+                    if cls.__name__ == "Square":
+                        new = ['id', 'size', 'x', 'y']
                         for i in range(len(a)):
                             d[new[i]] = a[i]
                         inst.append(cls.create(**d))
