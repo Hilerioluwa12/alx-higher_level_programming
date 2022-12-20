@@ -1,5 +1,5 @@
 #!/usr/bin/node
-const first_line = 'C is fun';
-const second_line = 'Python is cool';
-const third_line = 'JavaScript is amazing';
-console.log(first_line + '\n' + second_line + '\n' + third_line);
+/* A script that prints the following lines */
+console.log('C is fun');
+console.log('Python is cool');
+console.log('Javascript is amazing');
