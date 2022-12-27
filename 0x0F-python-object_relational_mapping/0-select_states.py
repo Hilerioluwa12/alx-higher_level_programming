@@ -21,3 +21,5 @@ if __name__ == "__main__":
         out = query.fetchall()
         for i in out:
             print(i)
+        query.close()
+        db.close()
