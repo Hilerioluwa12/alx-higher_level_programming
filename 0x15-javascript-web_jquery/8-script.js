@@ -1,6 +1,5 @@
-$.get('http://swapi.co/api/films?format=json', function (data) => {
-  const i = data.results;
-  for (const elem of object.values(i)) {
-    $('ul#list_movies').append('<li>' + elem.title + '</li>');
+$.get('https://swapi-api.alx-tools.com/api/films/?format=json', (data) => {
+  for (let i = 0; i < data.results.length; i++) {
+    $('ul#list_movies').append('<li>' + data.results[i].title + '</li>');
   }
 });
